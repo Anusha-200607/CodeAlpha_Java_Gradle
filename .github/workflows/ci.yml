@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Set up JDK 21
@@ -25,8 +25,11 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build and test with Gradle
+      - name: Grant execute permission for Gradle
+        run: chmod +x gradlew
+
+      - name: Clean and Build Project
         run: ./gradlew clean build
 
-      - name: Run application
+      - name: Run Java Application
         run: ./gradlew run
